@@ -37,7 +37,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Event Planner API", Version = "v1" });
-    
+
     // JWT token desteği ekle
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
@@ -134,8 +134,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Authentication ve Authorization middleware'lerini doğru sırada ekleyelim
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.MapControllerRoute(
     name: "default",
